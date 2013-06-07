@@ -1,0 +1,50 @@
+<head>
+  <title>HH Templater</title>
+</head>
+
+<body>
+  {{> emailForm }}
+  <hr/>
+  <div id="email-preview">{{> emailPreview }}</div>
+</body>
+
+<template name="emailForm">
+  {{#with email}}
+  <p><label>Header image URL</label><input type="text" class="js-input-header-image" value="{{headerImage}}"/></p>
+  <p><label>Header (markdown)</label><textarea style="height: 200px; width: 600px" class="js-input-header">{{header}}</textarea></p>
+  <p><label>Body (markdown)</label><textarea style="height: 400px; width: 900px" class="js-input-body">{{body}}</textarea></p>
+  <p><label>Footer image URL</label><input type="text" class="js-input-footer-image" value="{{footerImage}}"/></p>
+  <p><label>From address</label><input type="text" class="js-input-from-address" value="{{fromAddress}}"/></p>
+  <p><label>To address</label><input type="text" class="js-input-to-address" value="{{toAddress}}"/></p>
+  <p><label>Subject</label><input type="text" class="js-input-subject" value="{{subject}}"/></p>
+  <button class="btn js-button-send" style="float: right">Send</button>
+  <button class="btn js-button-save">Save</button>
+  {{/with}}
+</template>
+
+<template name="emailPreview">
+  {{#with email}}
+  <table width=600 style="margin: auto; {{defaultStyle}}">
+    <tr height=48>
+      <td colspan=2 style="text-align: center; font-size: 21px">
+        Join your SH3 Kennel this Friday for:
+      </td>
+    </tr>
+    <tr>
+      <td width=396>
+        <img width=396 src="{{headerImage}}"/>
+      </td>
+      <td width=204 style="text-align: center; font-size: 24px; line-height: 1.2">
+        {{#markdown}}{{header}}{{/markdown}}
+      </td>
+    </tr>
+    <tr>
+      <td colspan=2 style="font-size: 21px">
+        {{#markdown}}{{body}}{{/markdown}}
+        <img width=600 src="{{footerImage}}"/>
+      </td>
+    </tr>
+  </table>
+
+  {{/with}}
+</template>
