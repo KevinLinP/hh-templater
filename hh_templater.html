@@ -10,23 +10,43 @@
 
 <template name="emailForm">
   {{#with email}}
+  <p><label>Venue name</label><input type="text" class="js-input-venue-name" value="{{venueName}}"/></p>
+  <p><label>Long date</label><input type="text" class="js-input-long-date" value="{{longDate}}"/></p>
+  <p><label>Start time</label><input type="text" class="js-input-start-time" value="{{startTime}}"/></p>
+  <p><label>Maps URL</label><input type="text" class="js-input-maps-url" value="{{mapsUrl}}"/></p>
+  <p><label>Short address</label><input type="text" class="js-input-short-address" value="{{shortAddress}}"/></p>
   <p><label>Header image URL</label><input type="text" class="js-input-header-image" value="{{headerImage}}"/></p>
-  <p><label>Header (markdown)</label><textarea style="height: 200px; width: 600px" class="js-input-header">{{header}}</textarea></p>
   <p><label>Body (markdown)</label><textarea style="height: 400px; width: 900px" class="js-input-body">{{body}}</textarea></p>
   <p><label>Footer image URL</label><input type="text" class="js-input-footer-image" value="{{footerImage}}"/></p>
   <p><label>From address</label><input type="text" class="js-input-from-address" value="{{fromAddress}}"/></p>
   <p><label>To address</label><input type="text" class="js-input-to-address" value="{{toAddress}}"/></p>
-  <p><label>Subject</label><input type="text" class="js-input-subject" value="{{subject}}"/></p>
+  <p><label>Subject</label><input type="text" class="js-input-subject" value="{{subject}}" style="width: 600px"/></p>
   <button class="btn js-button-send" style="float: right">Send</button>
   <button class="btn js-button-save">Save</button>
+  <hr>
+  <div id="text-email-preview">
+    <br>
+    Hashy Hour!<br>
+    <br>
+    {{venueName}}<br>
+    {{longDate}}<br>
+    {{startTime}} - whenever!<br>
+    <br>
+    {{shortAddress}}<br>
+    <br>
+    {{body}}<br>
+    <br>
+    {{mapsUrl}}<br>
+    <br>
+  </div>
   {{/with}}
 </template>
 
 <template name="emailPreview">
   {{#with email}}
   <table width=600 style="margin: auto; {{defaultStyle}}">
-    <tr height=48>
-      <td colspan=2 style="text-align: center; font-size: 21px">
+    <tr style="height: 48px">
+      <td colspan=2 style="text-align: center; font-size: 18px">
         Join your SH3 Kennel this Friday for:
       </td>
     </tr>
@@ -34,8 +54,17 @@
       <td width=396>
         <img width=396 src="{{headerImage}}"/>
       </td>
-      <td width=204 style="text-align: center; font-size: 24px; line-height: 1.2">
-        {{#markdown}}{{header}}{{/markdown}}
+      <td width=204 style="text-align: center; font-size: 24px; line-height: 1.2; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;">
+        Hashy Hour<br>
+        at<br>
+        {{venueName}}<br>
+        <br>
+        <p style="font-size: 18px">
+          {{longDate}}<br>
+          {{startTime}} - whenever<br>
+          <br>
+          <a href="{{mapsUrl}}" target="_blank">{{shortAddress}}</a><br>
+        </p>
       </td>
     </tr>
     <tr>

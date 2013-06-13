@@ -1,7 +1,6 @@
 Emails = new Meteor.Collection 'emails'
 
 # TODO: subject
-# TODO: text version
 # TODO: switch to id/name attr for input elements?
 # TODO: style the user-facing form
   
@@ -12,9 +11,11 @@ if Meteor.isClient
   Template.emailForm.events {
     'click .js-button-send': (event) ->
       email = Emails.findOne {}
-      Meteor.call 'sendEmail', email, $('#email-preview').html()
+      Meteor.call 'sendEmail', email, $('#email-preview').html(), $('#text-email-preview').text()
 
     'click .js-button-save': (event) ->
+      subject = $('.js-input-subject').val()
+
       email = Emails.findOne {}
       unless email
         Emails.insert {}
@@ -22,12 +23,15 @@ if Meteor.isClient
       
       fields = {
         headerImage: $('.js-input-header-image').val()
-        header: $('.js-input-header').val()
+        venueName: $('.js-input-venue-name').val()
+        longDate: $('.js-input-long-date').val()
+        shortAddress: $('.js-input-short-address').val()
+        mapsUrl: $('.js-input-maps-url').val()
         body: $('.js-input-body').val()
         footerImage: $('.js-input-footer-image').val()
         toAddress: $('.js-input-to-address').val()
         fromAddress: $('.js-input-from-address').val()
-        subject: $('.js-input-subject').val()
+        subject: subject
       }
 
       Emails.update email._id, {$set: fields}
@@ -41,13 +45,13 @@ if Meteor.isClient
 if Meteor.isServer
   Meteor.methods {
 
-    sendEmail: (email, html) ->
+    sendEmail: (email, html, text) ->
       Email.send {
         to: email.toAddress
         from: email.fromAddress
         subject: email.subject
         html: html
-        text: 'see the html.'
+        text: text
       }
 
   }
