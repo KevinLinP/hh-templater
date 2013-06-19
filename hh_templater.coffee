@@ -3,6 +3,7 @@ Emails = new Meteor.Collection 'emails'
 # TODO: subject
 # TODO: switch to id/name attr for input elements?
 # TODO: style the user-facing form
+# TODO: reorganize god-awful email-preview divs
   
 if Meteor.isClient
   Template.emailForm.email = ->
@@ -30,7 +31,6 @@ if Meteor.isClient
         body: $('.js-input-body').val()
         footerImage: $('.js-input-footer-image').val()
         toAddress: $('.js-input-to-address').val()
-        fromAddress: $('.js-input-from-address').val()
         subject: subject
       }
 
@@ -48,7 +48,7 @@ if Meteor.isServer
     sendEmail: (email, html, text) ->
       Email.send {
         to: email.toAddress
-        from: email.fromAddress
+        from: 'kevin.lin.p@gmail.com'
         subject: email.subject
         html: html
         text: text

@@ -10,20 +10,53 @@
 
 <template name="emailForm">
   {{#with email}}
-  <p><label>Venue name</label><input type="text" class="js-input-venue-name" value="{{venueName}}"/></p>
-  <p><label>Long date</label><input type="text" class="js-input-long-date" value="{{longDate}}"/></p>
-  <p><label>Start time</label><input type="text" class="js-input-start-time" value="{{startTime}}"/></p>
-  <p><label>Maps URL</label><input type="text" class="js-input-maps-url" value="{{mapsUrl}}"/></p>
-  <p><label>Short address</label><input type="text" class="js-input-short-address" value="{{shortAddress}}"/></p>
-  <p><label>Header image URL</label><input type="text" class="js-input-header-image" value="{{headerImage}}"/></p>
-  <p><label>Body (markdown)</label><textarea style="height: 400px; width: 900px" class="js-input-body">{{body}}</textarea></p>
-  <p><label>Footer image URL</label><input type="text" class="js-input-footer-image" value="{{footerImage}}"/></p>
-  <p><label>From address</label><input type="text" class="js-input-from-address" value="{{fromAddress}}"/></p>
-  <p><label>To address</label><input type="text" class="js-input-to-address" value="{{toAddress}}"/></p>
-  <p><label>Subject</label><input type="text" class="js-input-subject" value="{{subject}}" style="width: 600px"/></p>
-  <button class="btn js-button-send" style="float: right">Send</button>
-  <button class="btn js-button-save">Save</button>
+  <form id="email-form">
+    <div class="container">
+      <label>Venue name</label>
+      <input type="text" class="js-input-venue-name span4" value="{{venueName}}"/>
+
+      <label>Long date</label>
+      <input type="text" class="js-input-long-date span4" value="{{longDate}}"/>
+
+      <label>Start time</label>
+      <input type="text" class="js-input-start-time span4" value="{{startTime}}"/>
+
+      <label>Maps URL</label>
+      <input type="text" class="js-input-maps-url span4" value="{{mapsUrl}}"/>
+
+      <label>Short address</label>
+      <input type="text" class="js-input-short-address span4" value="{{shortAddress}}"/>
+
+      <label>Header image URL</label>
+      <input type="text" class="js-input-header-image span4" value="{{headerImage}}"/>
+
+      <label>Body (markdown)</label>
+      <textarea rows=10 class="js-input-body span12">{{body}}</textarea>
+
+      <label>Footer image URL</label>
+      <input type="text" class="js-input-footer-image span4" value="{{footerImage}}"/>
+
+      <hr>
+
+      <label>From address</label>
+      <input type="text" class="span4" value="kevin.lin.p@gmail.com" disabled/>
+
+      <label>To address</label>
+      <input type="text" class="js-input-to-address span4" value="{{toAddress}}"/>
+
+      <label>Subject</label>
+      <input type="text" class="js-input-subject" value="{{subject}}" style="width: 600px"/>
+      <span class="help-block">ex: SH3 - Hashy Hour! - 6/7/2013 @ Frolik (Downtown)</span>
+
+      <div>
+        <button class="btn btn-primary js-button-save">Preview</button>
+        <button class="btn btn-danger pull-right js-button-send">Send</button>
+      </div>
+    </div>
+  </form>
+
   <hr>
+
   <div id="text-email-preview">
     <br>
     Hashy Hour!<br>
