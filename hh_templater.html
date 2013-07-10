@@ -3,6 +3,7 @@
 </head>
 
 <body>
+  {{loginButtons}}
   {{> emailForm }}
   <hr/>
   <div id="email-preview">{{> emailPreview }}</div>
@@ -12,6 +13,8 @@
   {{#with email}}
   <form id="email-form">
     <div class="container">
+      <h1 class="lead">Hashy Hour Templater</h1>
+
       <label>Venue name</label>
       <input type="text" class="js-input-venue-name span4" value="{{venueName}}"/>
 
@@ -23,6 +26,9 @@
 
       <label>Maps URL</label>
       <input type="text" class="js-input-maps-url span4" value="{{mapsUrl}}"/>
+
+      <label>Location Name (optional)</label>
+      <input type="text" class="js-input-location-name span4" value="{{locationName}}"/>
 
       <label>Short address</label>
       <input type="text" class="js-input-short-address span4" value="{{shortAddress}}"/>
@@ -43,15 +49,18 @@
 
       <label>To address</label>
       <input type="text" class="js-input-to-address span4" value="{{toAddress}}"/>
+      <span class="help-block">ex: WaH3@yahoogroups.com</span>
 
       <label>Subject</label>
       <input type="text" class="js-input-subject" value="{{subject}}" style="width: 600px"/>
       <span class="help-block">ex: SH3 - Hashy Hour! - 6/7/2013 @ Frolik (Downtown)</span>
 
-      <div>
-        <button class="btn btn-primary js-button-save">Preview</button>
-        <button class="btn btn-danger pull-right js-button-send">Send</button>
-      </div>
+      {{#if currentUser}}
+        <div>
+          <button class="btn btn-primary js-button-save">Save</button>
+          <button class="btn btn-danger pull-right js-button-send">Send</button>
+        </div>
+      {{/if}}
     </div>
   </form>
 
@@ -65,6 +74,9 @@
     {{longDate}}<br>
     {{startTime}} - whenever!<br>
     <br>
+    {{#if locationName}}
+      {{locationName}}<br>
+    {{/if}}
     {{shortAddress}}<br>
     <br>
     {{body}}<br>
@@ -96,6 +108,9 @@
           {{longDate}}<br>
           {{startTime}} - whenever<br>
           <br>
+          {{#if locationName}}
+            {{locationName}}<br>
+          {{/if}}
           <a href="{{mapsUrl}}" target="_blank">{{shortAddress}}</a><br>
         </p>
       </td>
