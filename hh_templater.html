@@ -3,16 +3,24 @@
 </head>
 
 <body>
-  {{loginButtons}}
-  {{> emailForm }}
-  <hr/>
+  <div class="bootstrap">
+    <div class="container">
+      {{loginButtons}}
+
+      {{#if currentUser}}
+        {{> emailForm }}
+      {{/if}}
+
+      <hr>
+      <h2 class="lead">Email:</h2>
+    </div>
+  </div>
   <div id="email-preview">{{> emailPreview }}</div>
 </body>
 
 <template name="emailForm">
   {{#with email}}
-  <form id="email-form">
-    <div class="container">
+    <form id="email-form">
       <h1 class="lead">Hashy Hour Templater</h1>
 
       <label>Venue name</label>
@@ -55,35 +63,32 @@
       <input type="text" class="js-input-subject" value="{{subject}}" style="width: 600px"/>
       <span class="help-block">ex: SH3 - Hashy Hour! - 6/7/2013 @ Frolik (Downtown)</span>
 
-      {{#if currentUser}}
-        <div>
-          <a href="#" class="btn btn-primary js-button-save">Save</a>
-          <a href="#" class="btn btn-danger pull-right js-button-send">Send</a>
-        </div>
+      <div>
+        <a href="#" class="btn btn-primary js-button-save">Save</a>
+        <a href="#" class="btn btn-danger pull-right js-button-send">Send</a>
+      </div>
+    </form>
+
+    <hr>
+
+    <div id="text-email-preview">
+      <h2 class="lead">Facebook:</h2>
+      <pre>
+      Hashy Hour!
+
+      {{venueName}}
+      {{longDate}}
+      {{startTime}} - whenever!
+      
+      {{#if locationName}}
+        {{locationName}}
       {{/if}}
+      {{shortAddress}}
+      
+      {{body}}
+      
+      {{mapsUrl}}</pre>
     </div>
-  </form>
-
-  <hr>
-
-  <div id="text-email-preview">
-    <br>
-    Hashy Hour!<br>
-    <br>
-    {{venueName}}<br>
-    {{longDate}}<br>
-    {{startTime}} - whenever!<br>
-    <br>
-    {{#if locationName}}
-      {{locationName}}<br>
-    {{/if}}
-    {{shortAddress}}<br>
-    <br>
-    {{body}}<br>
-    <br>
-    {{mapsUrl}}<br>
-    <br>
-  </div>
   {{/with}}
 </template>
 
