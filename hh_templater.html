@@ -3,18 +3,20 @@
 </head>
 
 <body>
-  <div class="bootstrap">
-    <div class="container">
-      {{loginButtons}}
+  {{loginButtons}}
 
-      {{#if currentUser}}
-        {{> emailForm }}
-      {{/if}}
+  {{#if currentUser}}
+    <div class="bootstrap">
+      <div class="container">
 
-      <hr>
-      <h2 class="lead">Email:</h2>
+          {{> emailForm }}
+
+        <hr>
+        <h2 class="lead">Email:</h2>
+      </div>
     </div>
-  </div>
+  {{/if}}
+
   <div id="email-preview">{{> emailPreview }}</div>
 </body>
 
@@ -74,20 +76,20 @@
     <div id="text-email-preview">
       <h2 class="lead">Facebook:</h2>
       <pre>
-      Hashy Hour!
+Hashy Hour!
 
-      {{venueName}}
-      {{longDate}}
-      {{startTime}} - whenever!
-      
-      {{#if locationName}}
-        {{locationName}}
-      {{/if}}
-      {{shortAddress}}
-      
-      {{body}}
-      
-      {{mapsUrl}}</pre>
+{{venueName}}
+{{longDate}}
+{{startTime}} - whenever!
+
+{{#if locationName}}
+{{locationName}}
+{{/if}}
+{{shortAddress}}
+
+{{body}}
+
+{{mapsUrl}}</pre>
     </div>
   {{/with}}
 </template>
