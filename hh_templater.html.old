@@ -24,11 +24,13 @@
 
 <template name="emailForm">
   {{#with email}}
-    <form id="email-form">
-      <h1 class="lead">Hashy Hour Templater</h1>
+    <h1 class="lead">Hashy Hour Templater</h1>
 
-      <label>Venue name</label>
-      <input type="text" class="js-input-venue-name span4" value="{{venueName}}"/>
+    <form id="email-form">
+      <fieldset class="form-group">
+        <label>Venue name</label>
+        <input type="text" class="js-input-venue-name span4" value="{{venueName}}"/>
+      </fieldset>
 
       <label>Long date</label>
       <input type="text" class="js-input-long-date span4" value="{{longDate}}"/>

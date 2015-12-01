@@ -1,0 +1,122 @@
+head
+  title HH Templater
+
+body
+  +loginButtons
+
+  if currentUser
+    .bootstrap
+      .container
+        +emailForm
+
+        hr
+        h2.lead Email:
+
+  #email-preview
+    +with email
+      +emailPreview
+
+
+template(name="emailForm")
+  +with email
+    h1.lead Hashy Hour Templater
+    form#email-form
+      fieldset.form-group.row
+        .col-md-4
+          label Venue name
+          input.js-input-venue-name.form-control(type="text" value=venueName)
+
+      fieldset.form-group.row
+        .col-md-4
+          label Long date
+          input.js-input-long-date.form-control(type="text" value=longDate)
+
+      fieldset.form-group.row
+        .col-md-4
+          label Start time
+          input.js-input-start-time.form-control(type="text" value=startTime)
+
+      fieldset.form-group.row
+        .col-md-4
+          label Maps URL
+          input.js-input-maps-url.form-control(type="text" value=mapsUrl)
+
+      fieldset.form-group.row
+        .col-md-4
+          label Location Name (optional)
+          input.js-input-location-name.form-control(type="text" value=locationName)
+
+      fieldset.form-group.row
+        .col-md-4
+          label Short address
+          input.js-input-short-address.form-control(type="text" value=shortAddress)
+
+      fieldset.form-group.row
+        .col-md-4
+          label Header image URL
+          input.js-input-header-image.form-control(type="text" value=headerImage)
+
+      fieldset.form-group.row
+        .col-lg-12
+          label Body (Markdown)
+          textarea.js-input-body.form-control(rows='10' value=body)
+
+      fieldset.form-group.row
+        .col-md-4
+          label Footer image URL
+          input.js-input-footer-image.form-control(type="text" value=footerImage)
+
+      hr
+
+      fieldset.form-group.row
+        .col-md-4
+          label Form address
+          input.form-control(type="text" value='sh3hashyhour@gmail.com' disabled)
+
+      fieldset.form-group.row
+        .col-md-4
+          label To address
+          input.js-input-js-input-to-address.form-control(type="text" value=toAddress)
+          small.text-muted ex: WaH3@yahoogroups.com
+
+      fieldset.form-group.row
+        .col-lg-12
+          label Subject
+          input.js-input-subject.form-control(type="text" value=subject)
+          small.text-muted ex: SH3 - Hashy Hour! - 6/7/2013 @ Frolik (Downtown)
+      fieldset.form-group.row
+        .col-lg-12
+          a.btn.btn-primary.js-button-save(href="#!") Save
+          a.btn.btn-danger.js-button-save.pull-right(href="#!") Send
+
+      hr
+
+      #text-email-preview
+        h2.lead Facebook:
+          code
+            +facebookPreview
+            //-+venueName
+
+//-{{venueName}}
+//-{{longDate}}
+//-{{startTime}} - whenever!
+
+//-{{#if locationName}}{{locationName}}, {{/if}}{{shortAddress}}
+
+//-{{body}}
+
+//-{{mapsUrl}}
+
+template(name="facebookPreview")
+  | Hashy Hour!
+  //-+venueName
+  
+      
+
+template(name="emailPreview")
+  +with email
+    table width=600 style="margin: auto; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 200; color: #333333; line-height: 1.5;"
+
+      tr style="height: 48px"
+        td colspan=2 style="text-align: center; font-size: 18px"
+          | Join your SH3 Kennel this Friday for:
