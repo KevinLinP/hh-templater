@@ -1,9 +1,6 @@
-# TODO: subject
 # TODO: switch to id/name attr for input elements?
-# TODO: style the user-facing form
-# TODO: reorganize god-awful email-preview divs
   
-Emails = new Meteor.Collection 'emails'
+Emails = new Mongo.Collection 'emails'
 
 Emails.allow {
   update: (userId, doc, fields, modifier) ->
@@ -76,7 +73,7 @@ if Meteor.isServer
 
       Email.send {
         to: email.toAddress
-        from: 'kevin.lin.p@gmail.com'
+        from: 'sh3hashyhour@gmail.com'
         subject: email.subject
         html: html
         text: text
