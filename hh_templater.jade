@@ -13,8 +13,7 @@ body
         h2.lead Email:
 
   #email-preview
-    +with email
-      +emailPreview
+    +emailPreview
 
 
 template(name="emailForm")
@@ -59,7 +58,8 @@ template(name="emailForm")
       fieldset.form-group.row
         .col-lg-12
           label Body (Markdown)
-          textarea.js-input-body.form-control(rows='10' value=body)
+          textarea.js-input-body.form-control(rows='10')
+            | #{body}
 
       fieldset.form-group.row
         .col-md-4
@@ -93,30 +93,36 @@ template(name="emailForm")
 
       #text-email-preview
         h2.lead Facebook:
-          code
-            +facebookPreview
-            //-+venueName
+          pre
+            code
+              | Hashy Hour!
+              | 
+              | #{venueName}
+              | #{longDate}
+              | #{startTime} – whenever!
+              | 
+              +if locationName
+                | #{locationName}
+              | #{shortAddress}
+              | 
+              | #{body}
+              | 
+              | #{mapsUrl}
 
-//-{{venueName}}
-//-{{longDate}}
-//-{{startTime}} - whenever!
-
-//-{{#if locationName}}{{locationName}}, {{/if}}{{shortAddress}}
-
-//-{{body}}
-
-//-{{mapsUrl}}
-
-template(name="facebookPreview")
-  | Hashy Hour!
-  //-+venueName
-  
-      
 
 template(name="emailPreview")
   +with email
-    table width=600 style="margin: auto; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 200; color: #333333; line-height: 1.5;"
+    table(width='600' style="margin: auto; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 200; color: #333333; line-height: 1.5;")
 
-      tr style="height: 48px"
-        td colspan=2 style="text-align: center; font-size: 18px"
+      tr(style="height: 48px")
+        td(colspan='2' style="text-align: center; font-size: 18px")
           | Join your SH3 Kennel this Friday for:
+      tr
+        td(width='396')
+          img(width='396' src=headerImage)
+        td(width='204' style="text-align: center; font-size: 24px; line-height: 1.2; border-top-width: 1px; border-top-style: solid; border-top-color: black; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;")
+          | Hashy Hour
+          br
+          | at
+          br
+          | #{venueName}
