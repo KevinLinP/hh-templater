@@ -126,3 +126,21 @@ template(name="emailPreview")
           | at
           br
           | #{venueName}
+          br
+          p(style="font-size: 18px")
+            | #{longDate}
+            br
+            | #{startTime} – whenever
+            br
+            br
+            +if locationName
+              | #{locationName}
+              br
+            a(href=mapsUrl target="_blank")
+              | #{shortAddress}
+            br
+      tr
+        td(colspan='2' style="font-size: 21px")
+          | #{body}
+          img(width='600' src=footImage)
+          
